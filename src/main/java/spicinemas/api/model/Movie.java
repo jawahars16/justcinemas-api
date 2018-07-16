@@ -2,36 +2,46 @@ package spicinemas.api.model;
 
 import lombok.EqualsAndHashCode;
 import spicinemas.api.type.MovieListingType;
-@EqualsAndHashCode(exclude = {"id"})
-public class Movie {
-    private Long id;
-    private String name;
-    private String experiences;
-    private MovieListingType listingType;
 
-    public Movie(String name, String experiences, MovieListingType listingType) {
-        this.name = name;
-        this.experiences = experiences;
-        this.listingType = listingType;
+import java.io.Serializable;
+
+@EqualsAndHashCode(exclude = {"id"})
+public class Movie implements Serializable {
+    private String Title;
+    private String Poster;
+    private String Language;
+
+    public Movie(String title, String Poster, String Language) {
+        this.Title = title;
+        this.Poster = Poster;
+        this.Language = Language;
     }
 
     public Movie() {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public String getName() {
-        return name;
+        return Title;
     }
 
-    public String getExperiences() {
-        return experiences;
+    public String getPoster() {
+        return Poster;
     }
 
-    public MovieListingType getListingType() {
-        return listingType;
+    public String getLanguage() {
+        return Language;
+    }
+
+    public void setTitle(String title) {
+        this.Title = title;
+    }
+
+    public void setPoster(String poster) {
+        this.Poster = poster;
+    }
+
+    public void setLanguage(String language) {
+        this.Language = language;
     }
 }

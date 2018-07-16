@@ -16,22 +16,19 @@ public class MovieRepository {
     private DSLContext dsl;
 
     public List<Movie> getNowShowingMovies() {
-        return dsl.select()
-                .from(DSL.table("MOVIE"))
-                .fetchInto(Movie.class);
+        return Movies.getMovies();
     }
 
     public void addMovie(Movie movie) {
-        dsl.insertInto(DSL.table("MOVIE"), DSL.field("NAME"), DSL.field("EXPERIENCES"), DSL.field("LISTING_TYPE"))
-                .values(movie.getName(), movie.getExperiences(), movie.getListingType().toString())
+        dsl.insertInto(DSL.table("MOVIE"), DSL.field("TITLE"), DSL.field("POSTER"), DSL.field("MOVIE_LANGUAGE"))
+                .values(movie.getName(), movie.getPoster(), movie.getLanguage())
                 .execute();
-
     }
 
     public Movie getMovie(String name) {
-        return dsl.select(DSL.field("NAME"), DSL.field("EXPERIENCES"), DSL.field("LISTING_TYPE"))
+        return dsl.select(DSL.field("TITLE"), DSL.field("POSTER"), DSL.field("MOVIE_LANGUAGE"))
                 .from(DSL.table("MOVIE"))
-                .where(DSL.field("MOVIE.NAME").eq(name))
+                .where(DSL.field("MOVIE.TITLE").eq(name))
                 .fetchOne()
                 .into(Movie.class);
     }

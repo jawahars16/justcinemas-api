@@ -1,6 +1,9 @@
 package spicinemas.api.controller;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 import spicinemas.api.db.MovieRepository;
+import spicinemas.api.db.Movies;
 import spicinemas.api.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,13 +18,6 @@ import java.util.List;
 public class MovieController {
     @Autowired
     MovieRepository movieRepo;
-
-    @RequestMapping(value = "/init",
-            method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void init() {
-
-        movieRepo.addMovie(new Movie("Dunkirk", "good", MovieListingType.NOW_SHOWING));
-    }
 
     @RequestMapping(value = "/movies/now-showing",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
