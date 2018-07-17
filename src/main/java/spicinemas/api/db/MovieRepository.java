@@ -9,6 +9,7 @@ import spicinemas.api.model.Movie;
 import spicinemas.api.type.MovieListingType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Repository
@@ -19,7 +20,21 @@ public class MovieRepository {
         List<Movie> nowShowingMovies = new ArrayList<>();
         for (Movie movie : Movies.getMovies()) {
             if(movie.getType() == MovieListingType.NOW_SHOWING) {
-                if ((language != null && !language.isEmpty() && movie.getLanguage().equalsIgnoreCase(language)) && (location != null && !location.isEmpty() && movie.getLocation().equalsIgnoreCase(location))) {
+                if(language != null && !language.isEmpty() && (location == null || location.isEmpty())) {
+                    if(movie.getLanguage().equalsIgnoreCase(language)) {
+                        nowShowingMovies.add(movie);
+                    }
+                }
+
+                if(location != null && !location.isEmpty() && (language == null || language.isEmpty())) {
+                    if(movie.getLocation().equalsIgnoreCase(location)) {
+                        nowShowingMovies.add(movie);
+                    }
+                }
+
+                if((language != null && !language.isEmpty() && movie.getLanguage().equalsIgnoreCase(language)) && (location != null && !location.isEmpty() && movie.getLocation().equalsIgnoreCase(location))) {
+                    nowShowingMovies.add(movie);
+                }else {
                     nowShowingMovies.add(movie);
                 }
             }
@@ -31,7 +46,21 @@ public class MovieRepository {
         List<Movie> upcomingMovies = new ArrayList<>();
         for (Movie movie : Movies.getMovies()) {
             if(movie.getType() == MovieListingType.UPCOMING) {
-                if ((language != null && !language.isEmpty() && movie.getLanguage().equalsIgnoreCase(language)) && (location != null && !location.isEmpty() && movie.getLocation().equalsIgnoreCase(location))) {
+                if(language != null && !language.isEmpty() && (location == null || location.isEmpty())) {
+                    if(movie.getLanguage().equalsIgnoreCase(language)) {
+                        upcomingMovies.add(movie);
+                    }
+                }
+
+                if(location != null && !location.isEmpty() && (language == null || language.isEmpty())) {
+                    if(movie.getLocation().equalsIgnoreCase(location)) {
+                        upcomingMovies.add(movie);
+                    }
+                }
+
+                if((language != null && !language.isEmpty() && movie.getLanguage().equalsIgnoreCase(language)) && (location != null && !location.isEmpty() && movie.getLocation().equalsIgnoreCase(location))) {
+                    upcomingMovies.add(movie);
+                }else {
                     upcomingMovies.add(movie);
                 }
             }
@@ -41,5 +70,13 @@ public class MovieRepository {
 
     public Movie getMovie(String id){
         return  Movies.getMovies().stream().filter(movie -> movie.getId().equals(id)).findFirst().get();
+    }
+
+    public List<String> getLocations() {
+        return Arrays.asList(LocationRepository.LOCATIONS);
+    }
+
+    public List<String> getLanguages() {
+        return Arrays.asList(LanguagesRepository.LANGUAGES);
     }
 }

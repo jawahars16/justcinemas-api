@@ -9,15 +9,14 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import static spicinemas.api.db.LanguagesRepository.LANGUAGES;
+import static spicinemas.api.db.LocationRepository.LOCATIONS;
+
 public class Movies {
 
     private static List<Movie> movies = new ArrayList<>();
 
     private static final MovieListingType[] TYPES = {MovieListingType.NOW_SHOWING, MovieListingType.UPCOMING};
-
-    private static final String[] LOCATIONS = {"Pune", "Bangalore", "Delhi"};
-
-    private static final String[] LANGUAGES = {"English", "Hindi"};
 
     public static void init() {
         RestTemplate restTemplate = new RestTemplate();
