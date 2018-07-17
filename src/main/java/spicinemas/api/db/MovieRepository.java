@@ -8,9 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import spicinemas.api.model.Movie;
 import spicinemas.api.type.MovieListingType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Repository
 @Transactional
@@ -20,6 +18,10 @@ public class MovieRepository {
         List<Movie> nowShowingMovies = new ArrayList<>();
         for (Movie movie : Movies.getMovies()) {
             if(movie.getType() == MovieListingType.NOW_SHOWING) {
+                if((language == null || language.isEmpty()) && (location == null || location.isEmpty())) {
+                    nowShowingMovies.add(movie);
+                }
+
                 if(language != null && !language.isEmpty() && (location == null || location.isEmpty())) {
                     if(movie.getLanguage().equalsIgnoreCase(language)) {
                         nowShowingMovies.add(movie);
@@ -34,11 +36,10 @@ public class MovieRepository {
 
                 if((language != null && !language.isEmpty() && movie.getLanguage().equalsIgnoreCase(language)) && (location != null && !location.isEmpty() && movie.getLocation().equalsIgnoreCase(location))) {
                     nowShowingMovies.add(movie);
-                }else {
-                    nowShowingMovies.add(movie);
                 }
             }
         }
+        nowShowingMovies.sort(Comparator.comparing(Movie::getName));
         return nowShowingMovies;
     }
 
@@ -46,6 +47,10 @@ public class MovieRepository {
         List<Movie> upcomingMovies = new ArrayList<>();
         for (Movie movie : Movies.getMovies()) {
             if(movie.getType() == MovieListingType.UPCOMING) {
+                if((language == null || language.isEmpty()) && (location == null || location.isEmpty())) {
+                    upcomingMovies.add(movie);
+                }
+
                 if(language != null && !language.isEmpty() && (location == null || location.isEmpty())) {
                     if(movie.getLanguage().equalsIgnoreCase(language)) {
                         upcomingMovies.add(movie);
@@ -60,11 +65,10 @@ public class MovieRepository {
 
                 if((language != null && !language.isEmpty() && movie.getLanguage().equalsIgnoreCase(language)) && (location != null && !location.isEmpty() && movie.getLocation().equalsIgnoreCase(location))) {
                     upcomingMovies.add(movie);
-                }else {
-                    upcomingMovies.add(movie);
                 }
             }
         }
+        upcomingMovies.sort(Comparator.comparing(Movie::getName));
         return upcomingMovies;
     }
 

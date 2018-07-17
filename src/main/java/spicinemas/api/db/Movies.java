@@ -19,9 +19,9 @@ public class Movies {
     private static final MovieListingType[] TYPES = {MovieListingType.NOW_SHOWING, MovieListingType.UPCOMING};
 
     private static String[] EXPERIENCES = new String[]
-            {
-                    "Dolby Atmos", "Atmos", "DTS", "Basic", "Auro 3D"
-            };
+    {
+            "Dolby Atmos", "Atmos", "DTS", "Basic", "Auro 3D"
+    };
 
     public static void init() {
         RestTemplate restTemplate = new RestTemplate();
@@ -40,7 +40,7 @@ public class Movies {
             int typeIndex = (int)(Math.random() * 10) % (TYPES.length);
             int experienceIndex = (int)(Math.random() * 10) % (EXPERIENCES.length);
 
-            Movie movie = new Movie(id, title, poster, LANGUAGES[langIndex], synopsis, genre, actors, TYPES[typeIndex], LOCATIONS[locIndex],EXPERIENCES[experienceIndex]);
+            Movie movie = new Movie(id, title, poster, LANGUAGES[langIndex], synopsis, genre, actors, TYPES[typeIndex], LOCATIONS[locIndex], EXPERIENCES[experienceIndex]);
 
             movies.add(movie);
         }
