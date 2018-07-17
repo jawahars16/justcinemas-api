@@ -13,8 +13,9 @@ public class Movie implements Serializable {
     private String synopsis;
     private String genre;
     private String actors;
+    private MovieListingType type;
 
-    public Movie(String id, String title, String poster, String language, String synopsis, String genre, String actors) {
+    public Movie(String id, String title, String poster, String language, String synopsis, String genre, String actors, MovieListingType type) {
         this.id = id;
         this.title = title;
         this.poster = poster;
@@ -82,5 +83,13 @@ public class Movie implements Serializable {
 
     public void setActors(String actors) {
         this.actors = actors;
+    }
+
+    public MovieListingType getType() {
+        return type;
+    }
+
+    public void setType(MovieListingType type) {
+        this.type = type;
     }
 }

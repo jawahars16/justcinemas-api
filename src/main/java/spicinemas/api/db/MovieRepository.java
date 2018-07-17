@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import spicinemas.api.model.Movie;
+import spicinemas.api.type.MovieListingType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -14,7 +16,23 @@ import java.util.List;
 public class MovieRepository {
 
     public List<Movie> getNowShowingMovies() {
-        return Movies.getMovies();
+        List<Movie> nowShowingMovies = new ArrayList<>();
+        for (Movie movie : Movies.getMovies()) {
+            if(movie.getType() == MovieListingType.NOW_SHOWING) {
+                nowShowingMovies.add(movie);
+            }
+        }
+        return nowShowingMovies;
+    }
+
+    public List<Movie> getUpcomingMovies() {
+        List<Movie> upcomingMovies = new ArrayList<>();
+        for (Movie movie : Movies.getMovies()) {
+            if(movie.getType() == MovieListingType.UPCOMING) {
+                upcomingMovies.add(movie);
+            }
+        }
+        return upcomingMovies;
     }
 
     public Movie getMovie(String id){

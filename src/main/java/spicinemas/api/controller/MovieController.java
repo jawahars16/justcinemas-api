@@ -28,5 +28,11 @@ public class MovieController {
     public Movie getMovieDetail(@PathVariable("id") String id) {
         return movieRepo.getMovie(id);
     }
+    
+    @RequestMapping(value = "/movies/upcoming",
+            method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Movie> getUpcomingMovies() {
+        return movieRepo.getUpcomingMovies();
+    }
 
 }

@@ -3,6 +3,7 @@ package spicinemas.api.db;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import spicinemas.api.model.Movie;
+import spicinemas.api.type.MovieListingType;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -10,7 +11,9 @@ import java.util.List;
 
 public class Movies {
 
-    static private List<Movie> movies = new ArrayList<>();
+    private static List<Movie> movies = new ArrayList<>();
+
+    private static MovieListingType[] types = {MovieListingType.NOW_SHOWING, MovieListingType.UPCOMING};
 
     public static void init() {
         RestTemplate restTemplate = new RestTemplate();
@@ -24,7 +27,8 @@ public class Movies {
             String synopsis = ((LinkedHashMap) movieObject).get("Plot").toString();
             String genre = ((LinkedHashMap) movieObject).get("Genre").toString();
             String actors = ((LinkedHashMap) movieObject).get("Actors").toString();
-            Movie movie = new Movie(id, title, poster, language, synopsis, genre, actors);
+            MovieListingType type = types[(int)(Math.random() * 10) % 2];
+            Movie movie = new Movie(id, title, poster, language, synopsis, genre, actors, type);
             movies.add(movie);
         }
     }
