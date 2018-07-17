@@ -10,11 +10,13 @@ public class Movie implements Serializable {
     private String Title;
     private String Poster;
     private String Language;
+    private MovieListingType type;
 
-    public Movie(String title, String Poster, String Language) {
+    public Movie(String title, String Poster, String Language, MovieListingType type) {
         this.Title = title;
         this.Poster = Poster;
         this.Language = Language;
+        this.type = type;
     }
 
     public Movie() {
@@ -43,5 +45,13 @@ public class Movie implements Serializable {
 
     public void setLanguage(String language) {
         this.Language = language;
+    }
+
+    public MovieListingType getType() {
+        return type;
+    }
+
+    public void setType(MovieListingType type) {
+        this.type = type;
     }
 }

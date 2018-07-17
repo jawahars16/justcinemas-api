@@ -25,4 +25,10 @@ public class MovieController {
         return movieRepo.getNowShowingMovies();
     }
 
+    @RequestMapping(value = "/movies/upcoming",
+            method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Movie> getUpcomingMovies() {
+        return movieRepo.getUpcomingMovies();
+    }
+
 }
