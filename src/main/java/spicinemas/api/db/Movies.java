@@ -20,7 +20,11 @@ public class Movies {
             String title = ((LinkedHashMap) movieObject).get("Title").toString();
             String poster = ((LinkedHashMap) movieObject).get("Poster").toString();
             String language = ((LinkedHashMap) movieObject).get("Language").toString();
-            Movie movie = new Movie(title, poster, language);
+            String id = ((LinkedHashMap) movieObject).get("imdbID").toString();
+            String synopsis = ((LinkedHashMap) movieObject).get("Plot").toString();
+            String genre = ((LinkedHashMap) movieObject).get("Genre").toString();
+            String actors = ((LinkedHashMap) movieObject).get("Actors").toString();
+            Movie movie = new Movie(id, title, poster, language, synopsis, genre, actors);
             movies.add(movie);
         }
     }
