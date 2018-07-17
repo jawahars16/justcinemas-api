@@ -18,6 +18,11 @@ public class Movies {
 
     private static final MovieListingType[] TYPES = {MovieListingType.NOW_SHOWING, MovieListingType.UPCOMING};
 
+    private static String[] EXPERIENCES = new String[]
+            {
+                    "Dolby Atmos", "Atmos", "DTS", "Basic", "Auro 3D"
+            };
+
     public static void init() {
         RestTemplate restTemplate = new RestTemplate();
         String fooResourceUrl = "https://thoughtworksreactreduxmovies.firebaseio.com/movies.json";
@@ -29,10 +34,14 @@ public class Movies {
             String synopsis = ((LinkedHashMap) movieObject).get("Plot").toString();
             String genre = ((LinkedHashMap) movieObject).get("Genre").toString();
             String actors = ((LinkedHashMap) movieObject).get("Actors").toString();
+
             int locIndex = (int)(Math.random() * 10) % (LOCATIONS.length);
             int langIndex = (int)(Math.random() * 10) % (LANGUAGES.length);
             int typeIndex = (int)(Math.random() * 10) % (TYPES.length);
-            Movie movie = new Movie(id, title, poster, LANGUAGES[langIndex], synopsis, genre, actors, TYPES[typeIndex], LOCATIONS[locIndex]);
+            int experienceIndex = (int)(Math.random() * 10) % (EXPERIENCES.length);
+
+            Movie movie = new Movie(id, title, poster, LANGUAGES[langIndex], synopsis, genre, actors, TYPES[typeIndex], LOCATIONS[locIndex],EXPERIENCES[experienceIndex]);
+
             movies.add(movie);
         }
     }
