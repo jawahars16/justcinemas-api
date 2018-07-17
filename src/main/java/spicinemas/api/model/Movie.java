@@ -14,9 +14,10 @@ public class Movie implements Serializable {
     private String synopsis;
     private String genre;
     private String actors;
+    private String location;
     private MovieListingType type;
 
-    public Movie(String id, String title, String poster, String language, String synopsis, String genre, String actors, MovieListingType type) {
+    public Movie(String id, String title, String poster, String language, String synopsis, String genre, String actors, MovieListingType type, String location) {
         this.id = id;
         this.title = title;
         this.poster = poster;
@@ -25,6 +26,7 @@ public class Movie implements Serializable {
         this.genre = genre;
         this.actors = actors;
         this.type = type;
+        this.location = location;
     }
 
     public Movie() {
@@ -93,5 +95,13 @@ public class Movie implements Serializable {
 
     public void setType(MovieListingType type) {
         this.type = type;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
