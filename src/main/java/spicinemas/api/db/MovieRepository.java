@@ -23,18 +23,18 @@ public class MovieRepository {
                 }
 
                 if(language != null && !language.isEmpty() && (location == null || location.isEmpty())) {
-                    if(movie.getLanguage().equalsIgnoreCase(language)) {
+                    if(language.equalsIgnoreCase("All Language") || movie.getLanguage().equalsIgnoreCase(language)) {
                         nowShowingMovies.add(movie);
                     }
                 }
 
                 if(location != null && !location.isEmpty() && (language == null || language.isEmpty())) {
-                    if(movie.getLocation().equalsIgnoreCase(location)) {
+                    if(location.equalsIgnoreCase("All Location") || movie.getLocation().equalsIgnoreCase(location)) {
                         nowShowingMovies.add(movie);
                     }
                 }
 
-                if((language != null && !language.isEmpty() && movie.getLanguage().equalsIgnoreCase(language)) && (location != null && !location.isEmpty() && movie.getLocation().equalsIgnoreCase(location))) {
+                if((language != null && !language.isEmpty() && (language.equalsIgnoreCase("All Language") || movie.getLanguage().equalsIgnoreCase(language))) && (location != null && !location.isEmpty() && (location.equalsIgnoreCase("All Location") || movie.getLocation().equalsIgnoreCase(location)))) {
                     nowShowingMovies.add(movie);
                 }
             }
@@ -63,7 +63,7 @@ public class MovieRepository {
                     }
                 }
 
-                if((language != null && !language.isEmpty() && movie.getLanguage().equalsIgnoreCase(language)) && (location != null && !location.isEmpty() && movie.getLocation().equalsIgnoreCase(location))) {
+                if((language != null && !language.isEmpty() && (language.equalsIgnoreCase("All Language") || movie.getLanguage().equalsIgnoreCase(language))) && (location != null && !location.isEmpty() && (location.equalsIgnoreCase("All Location") || movie.getLocation().equalsIgnoreCase(location)))) {
                     upcomingMovies.add(movie);
                 }
             }
