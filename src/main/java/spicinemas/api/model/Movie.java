@@ -1,6 +1,7 @@
 package spicinemas.api.model;
 
 import lombok.EqualsAndHashCode;
+import spicinemas.api.type.MovieListingType;
 
 import java.io.Serializable;
 
@@ -23,6 +24,7 @@ public class Movie implements Serializable {
         this.synopsis = synopsis;
         this.genre = genre;
         this.actors = actors;
+        this.type = type;
     }
 
     public Movie() {

@@ -38,6 +38,4 @@ public class MovieRepository {
     public Movie getMovie(String id){
         return  Movies.getMovies().stream().filter(movie -> movie.getId().equals(id)).findFirst().get();
     }
-
-
 }
