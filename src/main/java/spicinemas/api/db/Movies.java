@@ -13,9 +13,13 @@ public class Movies {
 
     private static List<Movie> movies = new ArrayList<>();
 
-    private static MovieListingType[] types = {MovieListingType.NOW_SHOWING, MovieListingType.UPCOMING};
+    private static final MovieListingType[] TYPES = {MovieListingType.NOW_SHOWING, MovieListingType.UPCOMING};
 
-    private static String[] experiences = new String[]
+    private static final String[] LOCATIONS = {"Pune", "Bangalore", "Delhi"};
+
+    private static final String[] LANGUAGES = {"English", "Hindi"};
+
+    private static String[] EXPERIENCES = new String[]
     {
         "Dolby Atmos", "Atmos", "DTS", "Basic", "Auro 3D"
     };
@@ -29,14 +33,18 @@ public class Movies {
         for (Object movieObject : response.getBody()) {
             String title = ((LinkedHashMap) movieObject).get("Title").toString();
             String poster = ((LinkedHashMap) movieObject).get("Poster").toString();
-            String language = ((LinkedHashMap) movieObject).get("Language").toString();
             String id = ((LinkedHashMap) movieObject).get("imdbID").toString();
             String synopsis = ((LinkedHashMap) movieObject).get("Plot").toString();
             String genre = ((LinkedHashMap) movieObject).get("Genre").toString();
             String actors = ((LinkedHashMap) movieObject).get("Actors").toString();
-            MovieListingType type = types[(int) (Math.random() * 10) % 2];
-            String experience = experiences[(int) (Math.random() * 10) % 5];
-            Movie movie = new Movie(id, title, poster, language, synopsis, genre, actors, type, experience);
+
+            int locIndex = (int)(Math.random() * 10) % (LOCATIONS.length);
+            int langIndex = (int)(Math.random() * 10) % (LANGUAGES.length);
+            int typeIndex = (int)(Math.random() * 10) % (TYPES.length);
+            int experienceIndex = (int)(Math.random() * 10) % (EXPERIENCES.length);
+
+            Movie movie = new Movie(id, title, poster, LANGUAGES[langIndex], synopsis, genre, actors, TYPES[typeIndex], LOCATIONS[locIndex],EXPERIENCES[experienceIndex]);
+
             movies.add(movie);
         }
     }
@@ -44,5 +52,4 @@ public class Movies {
     public static List<Movie> getMovies() {
         return movies;
     }
-
 }

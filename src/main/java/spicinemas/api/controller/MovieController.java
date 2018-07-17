@@ -2,10 +2,7 @@ package spicinemas.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import spicinemas.api.db.MovieRepository;
 import spicinemas.api.model.Movie;
 
@@ -19,8 +16,8 @@ public class MovieController {
 
     @RequestMapping(value = "/movies/now-showing",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Movie> getNowShowingMovies() {
-        return movieRepo.getNowShowingMovies();
+    public List<Movie> getNowShowingMovies(@RequestParam String language, @RequestParam String location) {
+        return movieRepo.getNowShowingMovies(language, location);
     }
 
     @RequestMapping(value = "/movies/{id}",
@@ -31,8 +28,7 @@ public class MovieController {
     
     @RequestMapping(value = "/movies/upcoming",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Movie> getUpcomingMovies() {
-        return movieRepo.getUpcomingMovies();
+    public List<Movie> getUpcomingMovies(@RequestParam String language, @RequestParam String location) {
+        return movieRepo.getUpcomingMovies(language, location);
     }
-
 }

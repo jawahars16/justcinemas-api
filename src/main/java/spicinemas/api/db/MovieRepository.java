@@ -15,21 +15,25 @@ import java.util.List;
 @Transactional
 public class MovieRepository {
 
-    public List<Movie> getNowShowingMovies() {
+    public List<Movie> getNowShowingMovies(String language, String location) {
         List<Movie> nowShowingMovies = new ArrayList<>();
         for (Movie movie : Movies.getMovies()) {
             if(movie.getType() == MovieListingType.NOW_SHOWING) {
-                nowShowingMovies.add(movie);
+                if ((language != null && !language.isEmpty() && movie.getLanguage().equalsIgnoreCase(language)) && (location != null && !location.isEmpty() && movie.getLocation().equalsIgnoreCase(location))) {
+                    nowShowingMovies.add(movie);
+                }
             }
         }
         return nowShowingMovies;
     }
 
-    public List<Movie> getUpcomingMovies() {
+    public List<Movie> getUpcomingMovies(String language, String location) {
         List<Movie> upcomingMovies = new ArrayList<>();
         for (Movie movie : Movies.getMovies()) {
             if(movie.getType() == MovieListingType.UPCOMING) {
-                upcomingMovies.add(movie);
+                if ((language != null && !language.isEmpty() && movie.getLanguage().equalsIgnoreCase(language)) && (location != null && !location.isEmpty() && movie.getLocation().equalsIgnoreCase(location))) {
+                    upcomingMovies.add(movie);
+                }
             }
         }
         return upcomingMovies;
@@ -38,6 +42,4 @@ public class MovieRepository {
     public Movie getMovie(String id){
         return  Movies.getMovies().stream().filter(movie -> movie.getId().equals(id)).findFirst().get();
     }
-
-
 }
