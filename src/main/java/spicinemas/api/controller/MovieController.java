@@ -34,5 +34,4 @@ public class MovieController {
     public List<Movie> getUpcomingMovies() {
         return movieRepo.getUpcomingMovies();
     }
-
 }
