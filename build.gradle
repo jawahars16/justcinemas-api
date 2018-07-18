@@ -26,8 +26,8 @@ apply plugin: 'nu.studer.jooq'
 apply plugin: "org.flywaydb.flyway"
 apply from: "configuration.gradle"
 
-sourceCompatibility = 1.10
-targetCompatibility = 1.10
+sourceCompatibility = 10
+targetCompatibility = 10
 
 repositories {
 	mavenCentral()
