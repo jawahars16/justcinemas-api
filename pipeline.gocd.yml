@@ -2,14 +2,14 @@ format_version: 2
 environments:
   ci:
     pipelines:
-      - "team1API"
+      - "team2API"
       
 pipelines:
-  "team1API":
-    group: team1
+  "team2API":
+    group: team2
     materials:
       ui:
-        git: "git@github.com:Sethuraman/bootcamp-just-cinemas-api.git"
+        git: "git@github.com:jawahars16/justcinemas-api.git"
     stages:
       - buildAndTest:
           jobs:
@@ -18,7 +18,7 @@ pipelines:
                 - node-and-java
               tasks:
                 - script: |
-                    buildAndDeploy/build/build.sh team1
+                    buildAndDeploy/build/build.sh team2
 
       - deploy:
            jobs:
@@ -27,4 +27,4 @@ pipelines:
                 - node-and-java
               tasks:
                 - script: |
-                    buildAndDeploy/deploy/deploy.sh team1 sethu-origin-key-pair
+                    buildAndDeploy/deploy/deploy.sh team2 sethu-origin-key-pair
