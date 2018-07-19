@@ -7,14 +7,13 @@ import spicinemas.api.type.MovieListingType;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import static spicinemas.api.db.LanguagesRepository.LANGUAGES;
 import static spicinemas.api.db.LocationRepository.LOCATIONS;
 
 public class Movies {
 
-    private static List<Movie> movies = new ArrayList<>();
+    private static ArrayList<Movie> movies = new ArrayList<>();
 
     private static final MovieListingType[] TYPES = {MovieListingType.NOW_SHOWING, MovieListingType.UPCOMING};
 
@@ -46,7 +45,7 @@ public class Movies {
         }
     }
 
-    public static List<Movie> getMovies() {
-        return movies;
+    public static ArrayList<Movie> getMovies() {
+        return (ArrayList<Movie>) movies.clone();
     }
 }

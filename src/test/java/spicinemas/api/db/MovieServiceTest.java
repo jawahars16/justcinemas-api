@@ -1,7 +1,5 @@
 package spicinemas.api.db;
 
-import org.jooq.DSLContext;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,34 +8,43 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 import spicinemas.SpiCinemasApplication;
-import spicinemas.api.controller.MovieController;
 import spicinemas.api.model.Movie;
+import spicinemas.api.service.MovieService;
 import spicinemas.api.type.MovieListingType;
 
 import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SpiCinemasApplication.class)
 @ActiveProfiles("test")
 @ContextConfiguration
-public class MovieRepositoryTest {
+public class MovieServiceTest {
+
+    private String location;
+    private String language;
+    private MovieListingType type;
 
     @Autowired
-    MovieRepository movieRepo;
+    private MovieService movieService;
+
+    @Before
+    public void init() {
+        location = "Pune";
+        language = "English";
+        type = MovieListingType.UPCOMING;
+    }
 
     @Test
-    public void upcomingMoviesShouldShowUpcomingMovies() {
+    public void testAllMoviesAreOfGivenLanguage() {
         Movies.init();
-        List<Movie> movies = movieRepo.getUpcomingMovies();
+
+        List<Movie> movies = movieService.getMovies(language, location, type);
         boolean flag = true;
         for(Movie movie : movies) {
-            if(movie.getType() != MovieListingType.UPCOMING) {
+            if(!language.equals(movie.getLanguage())) {
                 flag = false;
                 break;
             }
@@ -46,12 +53,28 @@ public class MovieRepositoryTest {
     }
 
     @Test
-    public void nowShowingMoviesShouldShowNowShowingMovies() {
+    public void testAllMoviesAreOfGivenLocation() {
         Movies.init();
-        List<Movie> movies = movieRepo.getNowShowingMovies();
+
+        List<Movie> movies = movieService.getMovies(language, location, type);
         boolean flag = true;
         for(Movie movie : movies) {
-            if(movie.getType() != MovieListingType.NOW_SHOWING) {
+            if(!movie.getLocation().equals(location)) {
+                flag = false;
+                break;
+            }
+        }
+        assertTrue(flag);
+    }
+
+    @Test
+    public void testAllMoviesAreOfGivenType() {
+        Movies.init();
+
+        List<Movie> movies = movieService.getMovies(language, location, type);
+        boolean flag = true;
+        for(Movie movie : movies) {
+            if(movie.getType() != type) {
                 flag = false;
                 break;
             }
