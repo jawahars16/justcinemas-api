@@ -56,4 +56,20 @@ public class Movie implements Serializable {
     public String getLocation() {
         return location;
     }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
 }

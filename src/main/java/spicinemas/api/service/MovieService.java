@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 @Service
 public class MovieService {
 
-    private static final String ALL_LANGUAGES = "All Language";
-    private static final String ALL_LOCATIONS = "All Location";
+    private static final String ALL_LANGUAGES = "All Languages";
+    private static final String ALL_LOCATIONS = "All Locations";
 
     public List<Movie> getMovies(String language, String location, MovieListingType type) {
         return MovieRepository.getMovies().stream().filter(movie -> movie.getType() == type)
