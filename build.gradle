@@ -21,15 +21,15 @@ apply plugin: 'spring-boot'
 apply plugin: 'nu.studer.jooq'
 apply from: "configuration.gradle"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 10
+targetCompatibility = 10
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	compileOnly 'org.projectlombok:lombok:1.16.20'
+	compileOnly 'org.projectlombok:lombok:1.16.22'
 	compile('org.springframework.boot:spring-boot-starter-jooq')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
