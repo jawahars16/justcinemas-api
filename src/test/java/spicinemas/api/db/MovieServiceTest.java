@@ -15,6 +15,7 @@ import spicinemas.api.type.MovieListingType;
 
 import java.util.List;
 
+import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,7 +40,7 @@ public class MovieServiceTest {
 
     @Test
     public void testAllMoviesAreOfGivenLanguage() {
-        Movies.init();
+        MovieRepository.init();
 
         List<Movie> movies = movieService.getMovies(language, location, type);
         boolean flag = true;
@@ -54,7 +55,7 @@ public class MovieServiceTest {
 
     @Test
     public void testAllMoviesAreOfGivenLocation() {
-        Movies.init();
+        MovieRepository.init();
 
         List<Movie> movies = movieService.getMovies(language, location, type);
         boolean flag = true;
@@ -69,7 +70,7 @@ public class MovieServiceTest {
 
     @Test
     public void testAllMoviesAreOfGivenType() {
-        Movies.init();
+        MovieRepository.init();
 
         List<Movie> movies = movieService.getMovies(language, location, type);
         boolean flag = true;
@@ -80,5 +81,29 @@ public class MovieServiceTest {
             }
         }
         assertTrue(flag);
+    }
+
+    @Test
+    public void testNullFilterShouldGiveEmptyMovieList() {
+        MovieRepository.init();
+
+        List<Movie> movies = movieService.getMovies(null, null, null);
+        assertNotNull(movies);
+    }
+
+    @Test
+    public void testEmptyFilterShouldGiveEmptyMovieList() {
+        MovieRepository.init();
+
+        List<Movie> movies = movieService.getMovies("", "", null);
+        assertNotNull(movies);
+    }
+
+    @Test
+    public void testRandomFilterShouldGiveEmptyMovieList() {
+        MovieRepository.init();
+
+        List<Movie> movies = movieService.getMovies("Random value", "Random value", null);
+        assertNotNull(movies);
     }
 }

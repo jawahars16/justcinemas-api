@@ -37,6 +37,10 @@ public class Movie implements Serializable {
         return title;
     }
 
+    public String getPoster() {
+        return poster;
+    }
+
     public String getLanguage() {
         return language;
     }

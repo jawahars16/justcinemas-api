@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 import static spicinemas.api.db.LanguagesRepository.LANGUAGES;
 import static spicinemas.api.db.LocationRepository.LOCATIONS;
 
-public class Movies {
+public class MovieRepository {
 
     private static ArrayList<Movie> movies = new ArrayList<>();
 

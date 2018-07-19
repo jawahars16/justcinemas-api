@@ -33,8 +33,8 @@ public class MovieControllerTest {
     }
 
     @Test
-    public void testHomePageShouldLoad() throws Exception{
-        this.mockMvc.perform(get("/")).andExpect(status().isOk());
+    public void testHomePageShouldLoadWith404() throws Exception{
+        this.mockMvc.perform(get("/movies/")).andExpect(status().is4xxClientError());
     }
 
     @Test
