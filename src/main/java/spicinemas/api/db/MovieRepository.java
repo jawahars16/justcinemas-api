@@ -31,13 +31,14 @@ public class MovieRepository {
             String synopsis = ((LinkedHashMap) movieObject).get("Plot").toString();
             String genre = ((LinkedHashMap) movieObject).get("Genre").toString();
             String actors = ((LinkedHashMap) movieObject).get("Actors").toString();
+            String videoURL = Constants.VIDEO_URL;
 
             int locIndex = (int)(Math.random() * 10) % (LOCATIONS.length);
             int langIndex = (int)(Math.random() * 10) % (LANGUAGES.length);
             int typeIndex = (int)(Math.random() * 10) % (TYPES.length);
             int experienceIndex = (int)(Math.random() * 10) % (EXPERIENCES.length);
 
-            Movie movie = new Movie(id, title, poster, LANGUAGES[langIndex], synopsis, genre, actors, TYPES[typeIndex], LOCATIONS[locIndex], EXPERIENCES[experienceIndex]);
+            Movie movie = new Movie(id, title, poster, LANGUAGES[langIndex], synopsis, genre, actors, TYPES[typeIndex], LOCATIONS[locIndex], EXPERIENCES[experienceIndex], videoURL);
 
             movies.add(movie);
         }

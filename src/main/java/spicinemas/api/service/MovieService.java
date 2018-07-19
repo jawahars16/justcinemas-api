@@ -16,8 +16,8 @@ public class MovieService {
 
     public List<Movie> getMovies(String language, String location, MovieListingType type) {
         return MovieRepository.getMovies().stream().filter(movie -> movie.getType() == type)
-                .filter(movie -> Constants.ALL_LOCATIONS.equals(location) || Objects.equals(movie.getLocation(), location))
-                .filter(movie -> Constants.ALL_LANGUAGES.equals(language) || Objects.equals(movie.getLanguage(), language))
+                .filter(movie -> location.isEmpty() || Constants.ALL_LOCATIONS.equals(location) || Objects.equals(movie.getLocation(), location))
+                .filter(movie -> language.isEmpty() || Constants.ALL_LANGUAGES.equals(language) || Objects.equals(movie.getLanguage(), language))
                 .sorted(Comparator.comparing(Movie::getName)).collect(Collectors.toList());
     }
 
