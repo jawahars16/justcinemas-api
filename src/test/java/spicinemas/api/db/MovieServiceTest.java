@@ -8,6 +8,8 @@ import spicinemas.api.service.MovieService;
 import spicinemas.api.type.MovieListingType;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
@@ -84,5 +86,14 @@ public class MovieServiceTest {
     public void testRandomFilterShouldGiveEmptyMovieList() {
         List<Movie> movies = movieService.getMovies("Random value", "Random value", null);
         assertNotNull(movies);
+    }
+
+    @Test
+    public void testValidMovieIdShouldReturnMovieObject() {
+        List<Movie> movies = movieService.getMovies(language, location, type);
+        Movie anyMovie = movies.stream().findAny().get();
+        String id = anyMovie.getId();
+
+        assertNotNull(movieService.getMovie(id));
     }
 }
