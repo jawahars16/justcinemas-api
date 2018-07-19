@@ -18,10 +18,10 @@ import java.util.List;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = SpiCinemasApplication.class)
-@ActiveProfiles("test")
-@ContextConfiguration
+//@RunWith(Sp.class)
+//@SpringBootTest(classes = SpiCinemasApplication.class)
+//@ActiveProfiles("test")
+//@ContextConfiguration
 public class MovieServiceTest {
 
     private String location;
@@ -29,7 +29,7 @@ public class MovieServiceTest {
     private MovieListingType type;
 
     @Autowired
-    private MovieService movieService;
+    private MovieService movieService = new MovieService();
 
     @Before
     public void init() {
