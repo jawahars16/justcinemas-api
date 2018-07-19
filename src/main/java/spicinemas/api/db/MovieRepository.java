@@ -17,10 +17,7 @@ public class MovieRepository {
 
     private static final MovieListingType[] TYPES = {MovieListingType.NOW_SHOWING, MovieListingType.UPCOMING};
 
-    private static String[] EXPERIENCES = new String[]
-    {
-            "Dolby Atmos", "Atmos", "DTS", "Basic", "Auro 3D"
-    };
+    private static String[] EXPERIENCES = {"Dolby Atmos", "Atmos", "DTS", "Basic", "Auro 3D"};
 
     public static void init() {
         RestTemplate restTemplate = new RestTemplate();
