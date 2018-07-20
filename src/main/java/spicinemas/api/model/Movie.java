@@ -15,8 +15,9 @@ public class Movie implements Serializable {
     private String location;
     private MovieListingType type;
     private String experience;
+    private String videoURL;
 
-    public Movie(String id, String title, String poster, String language, String synopsis, String genre, String actors, MovieListingType type, String location, String experience) {
+    public Movie(String id, String title, String poster, String language, String synopsis, String genre, String actors, MovieListingType type, String location, String experience, String videoURL) {
         this.id = id;
         this.title = title;
         this.poster = poster;
@@ -27,6 +28,7 @@ public class Movie implements Serializable {
         this.type = type;
         this.location = location;
         this.experience = experience;
+        this.videoURL = videoURL;
     }
 
     public Movie(MovieBasicInfo basic, MovieDetailInfo detail, MovieMediaInfo media){
@@ -50,6 +52,10 @@ public class Movie implements Serializable {
         return title;
     }
 
+    public String getPoster() {
+        return poster;
+    }
+
     public String getLanguage() {
         return language;
     }
@@ -64,5 +70,25 @@ public class Movie implements Serializable {
 
     public String getLocation() {
         return location;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public String getVideoURL() {
+        return videoURL;
     }
 }
