@@ -29,6 +29,19 @@ public class Movie implements Serializable {
         this.experience = experience;
     }
 
+    public Movie(MovieBasicInfo basic, MovieDetailInfo detail, MovieMediaInfo media){
+        this.id = id;
+        this.title = title;
+        this.poster = poster;
+        this.language = language;
+        this.synopsis = synopsis;
+        this.genre = genre;
+        this.actors = actors;
+        this.type = type;
+        this.location = location;
+        this.experience = experience;
+    }
+
     public Movie() {
 
     }

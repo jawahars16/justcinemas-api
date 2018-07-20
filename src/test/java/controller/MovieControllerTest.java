@@ -34,11 +34,11 @@ public class MovieControllerTest {
 
     @Test
     public void testHomePageShouldLoad() throws Exception{
-        this.mockMvc.perform(get("/")).andExpect(status().isOk());
+        this.mockMvc.perform(get("/movies?type=NOW_SHOWING&language=All Languages&location=All Locations")).andExpect(status().isOk());
     }
 
     @Test
-    public void testInvalidMovieIdShouldThrowException() throws Exception {
-        this.mockMvc.perform(get("/movie/21")).andExpect(status().isInternalServerError());
+    public void testMovieDetailShouldLoad() throws Exception {
+        this.mockMvc.perform(get("/movie/21")).andExpect(status().isOk());
     }
 }
