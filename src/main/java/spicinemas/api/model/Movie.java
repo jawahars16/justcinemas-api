@@ -17,35 +17,18 @@ public class Movie implements Serializable {
     private String experience;
     private String videoURL;
 
-    public Movie(String id, String title, String poster, String language, String synopsis, String genre, String actors, MovieListingType type, String location, String experience, String videoURL) {
-        this.id = id;
-        this.title = title;
-        this.poster = poster;
-        this.language = language;
-        this.synopsis = synopsis;
-        this.genre = genre;
-        this.actors = actors;
-        this.type = type;
-        this.location = location;
-        this.experience = experience;
-        this.videoURL = videoURL;
-    }
-
     public Movie(MovieBasicInfo basic, MovieDetailInfo detail, MovieMediaInfo media){
-        this.id = id;
-        this.title = title;
-        this.poster = poster;
-        this.language = language;
-        this.synopsis = synopsis;
-        this.genre = genre;
-        this.actors = actors;
-        this.type = type;
-        this.location = location;
-        this.experience = experience;
-    }
-
-    public Movie() {
-
+        this.id = basic.getId();
+        this.title = basic.getTitle();
+        this.poster = media.getPoster();
+        this.language = basic.getLanguage();
+        this.synopsis = detail.getSynopsis();
+        this.genre = detail.getGenre();
+        this.actors = detail.getActors();
+        this.type = detail.getType();
+        this.location = basic.getLocation();
+        this.experience = detail.getExperience();
+        this.videoURL = media.getVideoURL();
     }
 
     public String getName() {

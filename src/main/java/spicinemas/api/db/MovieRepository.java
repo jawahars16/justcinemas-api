@@ -4,6 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import spicinemas.api.Utils.Constants;
 import spicinemas.api.model.Movie;
+import spicinemas.api.model.MovieBasicInfo;
+import spicinemas.api.model.MovieDetailInfo;
+import spicinemas.api.model.MovieMediaInfo;
 import spicinemas.api.type.MovieListingType;
 
 import java.util.ArrayList;
@@ -38,7 +41,10 @@ public class MovieRepository {
             int typeIndex = (int)(Math.random() * 10) % (TYPES.length);
             int experienceIndex = (int)(Math.random() * 10) % (EXPERIENCES.length);
 
-            Movie movie = new Movie(id, title, poster, LANGUAGES[langIndex], synopsis, genre, actors, TYPES[typeIndex], LOCATIONS[locIndex], EXPERIENCES[experienceIndex], videoURL);
+            MovieBasicInfo basic = new MovieBasicInfo(title, LANGUAGES[langIndex], id, LOCATIONS[locIndex]);
+            MovieDetailInfo detail = new MovieDetailInfo(synopsis, genre, actors, TYPES[typeIndex], EXPERIENCES[experienceIndex]);
+            MovieMediaInfo media = new MovieMediaInfo(poster, videoURL);
+            Movie movie = new Movie(basic, detail, media);
 
             movies.add(movie);
         }
